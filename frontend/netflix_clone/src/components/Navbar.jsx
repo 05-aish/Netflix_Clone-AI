@@ -1,10 +1,13 @@
 import React from 'react';
 import { Search } from 'lucide-react';
+import { Link } from 'react-router';
 
 const Navbar = () => {
   return (
     <nav className='bg-black text-white flex justify-between items-center p-4 h-20 text-sm md:text-[16px] font-medium text-nowrap'>
-        <img src="/logo.png" alt="Netflix Logo" className='w-[100px] h-[50px] md:w-[120px] md:h-[80] cursor-pointer shrink-0 brightness-125'/>
+        <Link to={"/"}>
+            <img src="/logo.png" alt="Netflix Logo" className='w-[100px] h-[50px] md:w-[120px] md:h-[80] cursor-pointer shrink-0 brightness-125'/>
+        </Link>
         {/* Browse by drop down */}
         <ul className='hidden xl:flex space-x-6'>
             <li className='font-light text-sm cursor-pointer hover:text-gray-300'>Home</li>

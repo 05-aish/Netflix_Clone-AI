@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HeroBg from '../assets/herobg2.jpg';
 import { Play } from 'lucide-react';
 import { Info } from 'lucide-react';
+import { Link } from 'react-router';
 
 const hero = () => {
   const [movie, setMovie] =  useState(null);
@@ -36,17 +37,22 @@ const hero = () => {
         alt="bg-img" 
         className='w-full h-[480px] object-cover '/>
 
+      <div className='absolute inset-0 bg-linear-to-t from-[#141414] via-transparent to-transparent'></div>
+        
+
       <div className='flex space-x-2 md:space-x-4 absolute bottom-3 left-4 md:bottom-8 md:left-10 font-medium'>
 
-        <button className="flex justify-center space-x-1 items-center bg-white hover:opacity-70 font-bold text-black px-5 py-3 rounded-md">
-          <Play className='mr-2 h-5 fill-black'/>Play
-        </button>
+        <Link to={`/movie/${movie.id}`}>
+          <button className="flex justify-center space-x-1 items-center bg-white hover:opacity-70 font-bold text-black px-5 py-3 rounded-md">
+            <Play className='mr-2 h-5 fill-black'/>Play
+          </button>
+        </Link>
 
         <button className="flex justify-center bg-white/40 items-center opacity hover:opacity-80 text-sm font-bold text-white px-5 py-3 rounded-md">
           <Info className='mr-2 h-5 '/>More Info
         </button>
-        
       </div>
+
     </div>
   )
 }
