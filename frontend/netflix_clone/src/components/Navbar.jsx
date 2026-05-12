@@ -2,6 +2,7 @@ import React from 'react';
 import { Search } from 'lucide-react';
 import { Link } from 'react-router';
 
+
 const Navbar = () => {
   return (
     <nav className='bg-black text-white flex justify-between items-center p-4 h-20 text-sm md:text-[16px] font-medium text-nowrap'>
@@ -18,6 +19,7 @@ const Navbar = () => {
             <li className='font-light text-sm cursor-pointer hover:text-gray-300'>My List</li>
             <li className='font-light text-sm cursor-pointer hover:text-gray-300'>Browse by Languages</li>
         </ul>
+
         <div className='flex items-center space-x-4 relative'>
             {/* search bar */}
             <div className="relative hidden md:inline-flex">
@@ -25,12 +27,16 @@ const Navbar = () => {
 
                 <Search className="absolute top-2 right-4 w-5 h-5"/>
             </div>
-
+            
+            {/* get ai movie picks button */}
             <button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>
-            <button className='border border-[#333333] px-5 py-2 text-white cursor-pointer'>Sign In</button>
+
+            {/* sign in button */}
+            <Link to={"/signin"}>
+                <button className='border border-[#333333] px-5 py-2 text-white cursor-pointer'>Sign In</button>
+            </Link>
 
         </div>
-
     </nav>
   )
 }
