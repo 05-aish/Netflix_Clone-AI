@@ -1,8 +1,64 @@
 import React from 'react';
+import {useState} from 'react';
+import { Link, useNavigate } from 'react-router';
 
 const SignIn = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
   return (
-    <div className='text-white'>SignIn</div>
+    <div>
+      <div 
+        className='min-h-screen bg-cover bg-center bg-no-repeat md:px-8 py-2'
+        style={{
+        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/background_banner.jpg')"
+      }}>
+
+      <nav className='w-full flex justify-between items-center border-b border-gray-500'>
+        <Link to={"/"}>
+            <img src="/logo.png" alt="Netflix Logo" className='w-[100px] h-[50px] md:w-[120px] md:h-[80] cursor-pointer shrink-0 brightness-125 mb-2'/>
+        </Link>
+      </nav>
+      
+
+        <div className='max-w-[450px] bg-black/75 rounded-xl w-full px-8 py-10 mx-auto mt-8'>
+
+          <h1 className='text-3xl font-semibold text-white mb-2'>Enter your info to sign in</h1>
+          <p className='text-xl text-gray-400 mb-4'>Or get started with a new account.</p>
+
+          <form className='flex flex-col'>
+            <input 
+            className="w-full h-[50px] bg-[#141414] text-white border-[0.25px] border-gray-400 rounded px-5 mb-3" 
+            type="text" 
+            placeholder="Username" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <input 
+            className="w-full h-[50px] bg-[#141414] border-[0.25px] border-gray-400 text-white rounded px-5 mb-3" 
+            type="password" 
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} />
+
+            <button className='font-semibold text-white text-xl bg-red-600 px-2 py-2 rounded hover:opacity-90 cursor-pointer mb-4'>
+              Sign In
+            </button>
+          </form>
+
+          <p>
+            <span className='text-gray-400 font-light text-sm'>New to Netflix? </span>
+            <span 
+            className='text-white font-light cursor-pointer text-sm ml-2 hover:underline' onClick={() => {navigate("/signup")}}>
+              Sign Up!
+            </span>
+          </p>
+
+        </div>
+    </div>
+    </div>
   );
 }
 
