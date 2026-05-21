@@ -1,13 +1,30 @@
 import React from 'react';
 import {useState} from 'react';
 import {Link, useNavigate} from 'react-router';
+import { useAuthStore } from '../stores/authStore';
 const SignUp = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log("Username: ", username);
+  const {signUp, loading, error} = useAuthStore();
+
+  
+
+  const handleSignUp = async (e) => {
+    e.preventDefault(); 
+
+    try {
+      await signUp(username, email, password);
+      // navigate to homepage
+      navigate("/");
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <div 
@@ -28,7 +45,7 @@ const SignUp = () => {
           <h1 className='text-3xl font-semibold text-white mb-2'>Enter your info to sign in</h1>
           <p className='text-xl text-gray-400 mb-4'>Or get started with a new account.</p>
 
-          <form className='flex flex-col'>
+          <form className='flex flex-col' onSubmit={handleSignUp}>
             <input 
               className="w-full h-[50px] bg-[#141414] text-white border-[0.25px] border-gray-400 rounded px-5 mb-3" 
               type="text" 
@@ -53,14 +70,16 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}  
             />
 
-            <button className='font-semibold text-white text-xl bg-red-600 px-2 py-2 rounded hover:opacity-90 cursor-pointer mb-4'>
+            {error && <p className='text-red-500 text-sm'>{error}</p>}
+            
+            <button type="submit" disabled={loading} className='font-semibold text-white text-xl bg-red-600 px-2 py-2 rounded hover:opacity-90 cursor-pointer mb-4'>
               Sign Up
             </button>
           </form>
           <p>
             <span className='text-gray-400 font-light text-sm'>Already have an account? </span>
             <span className='text-white font-light cursor-pointer text-sm ml-2 hover:underline' onClick={() => {navigate("/signin")}}>Sign In!</span>
-          </p>
+          </p>  
         </div>
     </div>
     </div>

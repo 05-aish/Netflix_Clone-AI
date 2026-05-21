@@ -1,10 +1,29 @@
 import React from 'react';
 import {useState} from 'react';
 import { Link, useNavigate } from 'react-router';
-
+import toast from "react-hot-toast"
+import { useAuthStore } from '../stores/authStore';
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const { login, loading, error } = useAuthStore();
+
+  const handleLogin = async (e) => {
+  e.preventDefault(); 
+
+  try {
+    const {message} = await login(username, password);
+
+    toast.success(message)
+    // navigate to homepage
+    navigate("/");
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
   const navigate = useNavigate();
   return (
@@ -27,7 +46,7 @@ const SignIn = () => {
           <h1 className='text-3xl font-semibold text-white mb-2'>Enter your info to sign in</h1>
           <p className='text-xl text-gray-400 mb-4'>Or get started with a new account.</p>
 
-          <form className='flex flex-col'>
+          <form onSubmit={handleLogin} className='flex flex-col'>
             <input 
             className="w-full h-[50px] bg-[#141414] text-white border-[0.25px] border-gray-400 rounded px-5 mb-3" 
             type="text" 
@@ -43,10 +62,15 @@ const SignIn = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)} />
 
-            <button className='font-semibold text-white text-xl bg-red-600 px-2 py-2 rounded hover:opacity-90 cursor-pointer mb-4'>
+            <button
+            type="submit"
+            disabled={loading}
+            className='font-semibold text-white text-xl bg-red-600 px-2 py-2 rounded hover:opacity-90 cursor-pointer mb-4'>
               Sign In
             </button>
           </form>
+
+          {error && <p className='text-red-500 text-sm'>{error}</p>}
 
           <p>
             <span className='text-gray-400 font-light text-sm'>New to Netflix? </span>

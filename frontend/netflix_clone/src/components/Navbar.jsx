@@ -1,9 +1,24 @@
 import React from 'react';
+import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { Link } from 'react-router';
+import { useAuthStore } from '../../stores/authStore';
+import { HelpCircle, Settings, LogOut, UsersRound } from 'lucide-react';
+import {toast} from "react-hot-toast";
 
 
 const Navbar = () => {
+
+  const {user, logout} = useAuthStore();
+  const [showMenu, setShowMenu] = useState(false);
+  
+
+  const handleLogout = async () => {
+    const { message } = await logout();
+    toast.success(message);
+    setShowMenu(false);
+  }
+
   return (
     <nav className='bg-black text-white flex justify-between items-center p-4 h-20 text-sm md:text-[16px] font-medium text-nowrap'>
         <Link to={"/"}>
@@ -29,13 +44,39 @@ const Navbar = () => {
             </div>
             
             {/* get ai movie picks button */}
-            <button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>
+            <Link to={"/ai-recommendations"}>
+                <button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>
+            </Link>
 
             {/* sign in button */}
+            {(!user)? 
             <Link to={"/signin"}>
                 <button className='border border-[#333333] px-5 py-2 text-white cursor-pointer'>Sign In</button>
             </Link>
+            :
+            <button 
+            onClick={() => setShowMenu(!showMenu)}
+            className='relative border border-[#333333] px-5 py-2 h-10 text-sm text-white cursor-pointer'>{user?.username}</button>
+            }
 
+            {showMenu && 
+            
+            <div className='flex flex-col absolute mt-2 right-0 top-10 z-10 w-48 border border-[#333333] bg-[#141414]/50 rounded overflow-hidden gap-y-2 shadow-lg'>
+
+                <span className='flex flex-row px-4 pt-4 text-sm hover:bg-[#222222]/50 transition'><UsersRound/>
+                    <div className='ml-3 flex flex-col'>
+                    <span>{user?.username}</span>
+                    <span className='text-xs text-gray-400 hover:bg-[#222222]/50 transition'>{user?.email}</span>
+                    </div>
+                </span>
+                
+                <span className='flex px-4 pt-4 text-sm hover:bg-[#222222]/50 transition gap-x-2'><Settings/>Switch Profile</span>
+                <span className='flex px-4 pt-4 text-sm hover:bg-[#222222]/50 transition gap-x-2'><HelpCircle/>Help Center</span>
+                <br/>
+                <button onClick={handleLogout} className='flex justify-center items-center px-4 pb-4 text-sm hover:bg-[#222222]/50  transition gap-x-2'><LogOut/>Log out</button>
+
+            </div>}
+            
         </div>
     </nav>
   )
