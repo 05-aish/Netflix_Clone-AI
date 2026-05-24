@@ -111,7 +111,7 @@ NETFLIXCLONE/
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/netflixclone.git
+git clone https://github.com/05-aish/Netflic_Clone-AI.git
 cd netflixclone
 ```
 
@@ -184,7 +184,7 @@ The app runs at `http://localhost:5173`.
 
 ## Deployment
 
-The frontend is deployed on [Vercel](https://vercel.com) and the backend is deployed on [Railway](https://railway.app).
+The frontend is deployed on [Vercel](https://netflix-clone-ai-lgg9-kr7q7fvg4.vercel.app/) and the backend is deployed on [Railway](netflixclone-ai-production.up.railway.app).
 
 ### Frontend (Vercel)
 
@@ -208,7 +208,7 @@ The frontend is deployed on [Vercel](https://vercel.com) and the backend is depl
 
 **Aishwarya**
 Computer Science and Design Student
-[GitHub](https://github.com/yourusername) · [LinkedIn](https://linkedin.com/in/yourusername)
+[GitHub](https://github.com/05-aish) · [LinkedIn](https://www.linkedin.com/in/aishwarya-mandal-6b79b6279/)
 
 ---
 
