@@ -9,6 +9,8 @@ const SignIn = () => {
 
   const { login, loading, error } = useAuthStore();
 
+  console.log(import.meta.env.VITE_API_URL)
+
   const handleLogin = async (e) => {
   e.preventDefault(); 
 
