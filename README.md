@@ -6,10 +6,15 @@ A full-stack Netflix-inspired movie browsing application built with the MERN sta
 
 ## Screenshots
 
+### Auth Page
 ![Authentication](frontend/netflix_clone/public/auth.png)
+### Hero Banner
 ![Hero Banner](frontend/netflix_clone/public/hero.png)
+### Watch History
 ![Home page with continue watching](frontend/netflix_clone/public/history.png)
+### AI Recommendations
 ![AI Recommendations](frontend/netflix_clone/public/airecc.png)
+### Search and Profile drop downs.
 ![Search bar and profile](frontend/netflix_clone/public/search.png)
 
 
