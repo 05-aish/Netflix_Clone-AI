@@ -2,29 +2,35 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from "express";
+import cors from "cors";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import { connectToDB } from "./config/db.js";
 import User from './models/user.model.js';
+import watchHistoryRouter from './routes/watchHistory.route.js';
+
 
 
 const app = express();
 
 //middleware
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-app.use(cookieParser())
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({origin: process.env.CLIENT_URL, credentials: true}))
+app.use(cookieParser());
+app.use('/api/watch-history', watchHistoryRouter);
 
 const PORT = process.env.PORT || 3001;
 
-//get request
+//get request home page
 app.get('/', (req, res) => {
     res.send('');
 });
 
 
-//post request
+//post request signup
 app.post("/api/signup", async (req, res) => {
     const {username, email, password} = req.body;
     try{
@@ -73,7 +79,7 @@ app.post("/api/signup", async (req, res) => {
 });
 
 
-//get request
+//get request keep cookie to login
 app.get('/api/fetch', async (req, res) =>{
     const {token} = req.cookies;
     if(!token){
@@ -100,6 +106,12 @@ app.get('/api/fetch', async (req, res) =>{
         return res.status(400).json({message: error.message})
     }
 });
+
+//post req logout
+app.post('/api/logout', async (req, res) => {
+    res.clearCookie("token");
+    return res.status(200).json({message: "Logged out."})
+})
 
 
 app.post("/api/login", async (req, res) => {
