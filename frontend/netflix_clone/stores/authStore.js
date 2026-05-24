@@ -23,20 +23,17 @@ export const useAuthStore = create((set) => ({
     },
 
     login: async(username, password) => {
-    set({ loading: true, message: null, error: null })
-    try {
-        const response = await axios.post("/api/login", { username, password })
-        console.log("response:", response)  // add this
-        const { user, message } = response.data;
-        set({ user, message, loading: false });
-        return { user, message };
-    } catch (error) {
-        console.log("full error:", error)   // add this
-        console.log("error response:", error.response)  // add this
-        set({ loading: false, error: error.response?.data?.message || 'Error Logging in.' })
-        throw error;
-    }
-},
+        set({ loading: true, message: null, error: null })
+        try {
+            const response = await axios.post("/api/login", { username, password })
+            const { user, message } = response.data;
+            set({ user, message, loading: false });
+            return { user, message };
+        } catch (error) {
+            set({ loading: false, error: error.response.data.message || 'Error Logging in.' })
+            throw error;
+        }
+    },
 
     fetchUser: async () => {
         set({ isFetching: true, error: null })
