@@ -49,7 +49,7 @@ const Moviepage = () => {
 
   const logWatchHistory = async () => {
   try {
-    await fetch('http://localhost:3001/api/watch-history', {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/watch-history`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include', // sends the cookie automatically

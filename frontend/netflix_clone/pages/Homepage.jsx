@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 const Homepage = () => {
   const [watchHistory, setWatchHistory] = useState([]);    
     useEffect(() => {
-    fetch('http://localhost:3001/api/watch-history', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/watch-history`, {
         credentials: 'include' // sends cookie automatically
     })
         .then(res => res.json())
