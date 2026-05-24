@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { Play } from 'lucide-react';
 
+
 const Moviepage = () => {
   const [ movie, setMovie  ] = useState(null);
   const [ recommendations, setRecommendations ] = useState([]);
@@ -45,6 +46,24 @@ const Moviepage = () => {
     .catch(err => console.error(err));
   }, [id]);
 
+
+  const logWatchHistory = async () => {
+  try {
+    await fetch('http://localhost:3001/api/watch-history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // sends the cookie automatically
+      body: JSON.stringify({
+        movieId: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path
+      })
+    });
+  } catch (err) {
+    console.error('Failed to log watch history', err);
+  }
+};
+
   if(!movie) {
     return <p className="flex items-center justify-center h-screen text-white
     text-lg">Loading...</p>
@@ -53,7 +72,7 @@ const Moviepage = () => {
   return (
     <div className='min-h-screen text-white'>
       <div 
-        className='relative h-[60vh] flex' 
+        className='relative h-[70vh] flex' 
         style={{ backgroundImage: movie.backdrop_path ? `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` : 'none',
         backgroundSize: "cover",
         backgroundPosition: "center" 
@@ -87,7 +106,9 @@ const Moviepage = () => {
               <p className='text-gray-200 max-w-2xl'>{movie.overview}</p>
               
               <Link to={videos ? `https://www.youtube.com/watch?v=${videos.key}` : "#"} target="_blank">
-                <button className="flex justify-center space-x-1 items-center bg-white hover:opacity-70 font-bold text-black mt-2 md:mt-4 px-5 py-3 rounded-md">
+                <button 
+                onClick={logWatchHistory}
+                className="flex justify-center space-x-1 items-center bg-white hover:opacity-70 font-bold text-black mt-2 md:mt-4 px-5 py-3 rounded-md">
                   <Play className='mr-2 h-5 fill-black'/>Watch Now
                 </button>
               </Link>

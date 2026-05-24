@@ -14,6 +14,7 @@ const CardList = ({title, category}) => {
         }
     };
 
+    
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`, options)
         .then(res => res.json())
@@ -24,14 +25,14 @@ const CardList = ({title, category}) => {
     
     return (
     <div className="text-white md:x-4">
-        <h2 className="pt-5 pb-5 font-medium">{title}</h2>
+        <h2 className="pt-4 pb-4 font-bold tracking-wide text-lg">{title}</h2>
         <Swiper className='mySwiper'>
             {data.map((item, idx) =>
                 <SwiperSlide key={idx}
                 className='max-w-72' >
                     <Link to={`/movie/${item.id}`}>
                         <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="" className="w-full h-44 object-center object-cover px-0.5" />
-                        <p className="mx-1 mt-2">{item.original_title}</p>
+                        <p className="mx-1 mt-2 font-semibold">{item.original_title}</p>
                     </Link> 
                 </SwiperSlide>
             )}
