@@ -197,7 +197,6 @@ The frontend is deployed on [Vercel](https://netflix-clone-ai-lgg9-kr7q7fvg4.ver
 ![Preview](./public/hero.png)
 ![Preview](./public/airecc.png)
 ![Preview](./public/history.png)
-
 ---
 
 ## Author
