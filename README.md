@@ -4,13 +4,16 @@ A full-stack Netflix-inspired movie browsing application built with the MERN sta
 
 ## Screenshots
 
-### Dashboard
-![Dashboard](public/page.png)
-
-![Dashboard](public/page2.png)
-
-### Submissions
-![Dashboard](public/submissions.png)
+### Auth Page
+![Authentication](frontend/netflix_clone/public/auth.png)
+### Hero Banner
+![Hero Banner](frontend/netflix_clone/public/hero.png)
+### Continue Watching
+![Home page with continue watching](frontend/netflix_clone/public/history.png)
+### Search and Navigation
+![Navigation Bar](frontend/netflix_clone/public/search.png)
+### AI Recommendations
+![AI Recommendations](frontend/netflix_clone/public/airecc.png)
 
 
 
@@ -185,22 +188,22 @@ The app runs at `http://localhost:5173`.
 
 ## Deployment
 
-The frontend is deployed on [Vercel](https://netflix-clone-ai-lgg9-kr7q7fvg4.vercel.app/) and the backend is deployed on [Railway](netflixclone-ai-production.up.railway.app).
+The frontend is deployed on [Vercel](https://netflix-clone-ai-lgg9-kr7q7fvg4.vercel.app/) and the backend is deployed on [Render](https://netflix-clone-ai.onrender.com).
 
 ### Frontend (Vercel)
 
 1. Import the GitHub repository on Vercel
 2. Set Root Directory to `frontend`
-3. Add `VITE_API_URL` as an environment variable pointing to your Railway backend URL
+3. Add `VITE_API_URL` as an environment variable pointing to your Render backend URL
 4. Deploy
 
-### Backend (Railway)
+### Backend (Render)
 
-1. Create a new project on Railway and connect the GitHub repository
+1. Create a new project on Render and connect the GitHub repository
 2. Set Root Directory to `backend`
 3. Add all required environment variables
 4. Set `CLIENT_URL` to your Vercel frontend URL
-5. Do not set `PORT` manually -- Railway injects it automatically
+5. Do not set `PORT` manually -- Render injects it automatically
 6. Deploy
 
 ---
