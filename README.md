@@ -1,4 +1,4 @@
-# NetflixClone
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/16527a6c-d62a-4384-8212-3c03861731c5" /># NetflixClone
 
 A full-stack Netflix-inspired movie browsing application built with the MERN stack. Features real-time movie data from TMDB, AI-powered recommendations via Groq, JWT-based authentication, and per-user watch history.
 
@@ -6,16 +6,12 @@ A full-stack Netflix-inspired movie browsing application built with the MERN sta
 
 ## Screenshots
 
-### Auth Page
-![Authentication](frontend/netflix_clone/public/auth.png)
-### Hero Banner
-![Hero Banner](frontend/netflix_clone/public/hero.png)
-### Watch History
-![Home page with continue watching](frontend/netflix_clone/public/history.png)
-### AI Recommendations
-![AI Recommendations](frontend/netflix_clone/public/airecc.png)
-### Search and Profile drop downs.
-![Search bar and profile](frontend/netflix_clone/public/search.png)
+### Dashboard
+![Dashboard](public/page.png)
+![Dashboard](public/page2.png)
+### Submissions
+![Dashboard](public/submissions.png)
+
 
 
 ---
